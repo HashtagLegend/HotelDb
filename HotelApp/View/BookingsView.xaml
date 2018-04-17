@@ -1,0 +1,69 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HotelApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModel="using:HotelApp.ViewModel"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    x:Class="HotelApp.BookingsView"
+    mc:Ignorable="d">
+
+    <Grid Background="#FFC2C2C2">
+
+        <Grid.DataContext>
+            <ViewModel:NewBookingViewModel/>
+        </Grid.DataContext>
+        <ListView HorizontalAlignment="Left" Height="970" Margin="48,80,0,0" VerticalAlignment="Top" Width="860" Background="White" ItemsSource="{Binding BookingList.BookingCatalog}"/>
+
+        <AppBarButton HorizontalAlignment="Left" Icon="Home" Label="Home" Margin="1,0,0,0" VerticalAlignment="Top" Width="127" Height="70">
+            <Interactivity:Interaction.Behaviors>
+                <Core:EventTriggerBehavior EventName="Click">
+                    <Core:NavigateToPageAction TargetPage="HotelApp.View.FrontPageView"/>
+                </Core:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+        </AppBarButton>
+        <AppBarButton HorizontalAlignment="Left" Icon="Accept" Label="Bookings" Margin="254,0,0,0" VerticalAlignment="Top" Width="127" Height="70">
+            <Interactivity:Interaction.Behaviors>
+                <Core:EventTriggerBehavior EventName="Click">
+                    <Core:NavigateToPageAction TargetPage="HotelApp.BookingsView"/>
+                </Core:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+        </AppBarButton>
+        <AppBarButton HorizontalAlignment="Left" Icon="Stop" Label="Hotels" Margin="128,0,0,0" VerticalAlignment="Top" Width="126" Height="70">
+            <Interactivity:Interaction.Behaviors>
+                <Core:EventTriggerBehavior EventName="Click">
+                    <Core:NavigateToPageAction TargetPage="HotelApp.View.HotelListView"/>
+                </Core:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+        </AppBarButton>
+        <TextBox HorizontalAlignment="Left" Margin="985,215,0,0" TextWrapping="Wrap" Text="{Binding View_Booking_Id, Mode=TwoWay}" VerticalAlignment="Top" Width="172" Height="39"/>
+        <TextBlock HorizontalAlignment="Left" Margin="985,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Booking ID"/>
+        <TextBox HorizontalAlignment="Left" Margin="985,285,0,0" TextWrapping="Wrap" Text="{Binding View_Hotel_No, Mode=TwoWay}" VerticalAlignment="Top" Width="172" Height="39"/>
+        <TextBlock HorizontalAlignment="Left" Margin="985,260,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Hotel Nummer"/>
+        <TextBox HorizontalAlignment="Left" Margin="985,354,0,0" TextWrapping="Wrap" Text="{Binding View_Guest_No, Mode=TwoWay}" VerticalAlignment="Top" Width="172" Height="39"/>
+        <TextBlock HorizontalAlignment="Left" Margin="985,329,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Gæstenummer"/>
+        <TextBlock HorizontalAlignment="Left" Margin="985,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold" TextDecorations="Underline">
+            <Run Text="Opret ny"/>
+            <Run Text=" booking"/>
+        </TextBlock>
+        <AppBarButton HorizontalAlignment="Left" Icon="add" Label="&#xD;&#xA;Opret booking&#xD;&#xA;" Margin="1051,616,0,0" VerticalAlignment="Top" Width="140">
+            <Interactivity:Interaction.Behaviors>
+                <Core:EventTriggerBehavior EventName="Click">
+                    <Core:CallMethodAction MethodName="CreateBooking" TargetObject="{Binding Bookinghandler}"/>
+                </Core:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+        </AppBarButton>
+        <TextBox HorizontalAlignment="Left" Margin="985,422,0,0" TextWrapping="Wrap" Text="{Binding View_Room_No, Mode=TwoWay}" VerticalAlignment="Top" Width="172" Height="39"/>
+        <TextBlock HorizontalAlignment="Left" Margin="985,397,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Run Text="Rum "/>
+            <Run Text="n"/>
+            <Run Text="ummer"/>
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="985,467,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Fra"/>
+        <TextBlock HorizontalAlignment="Left" Margin="985,536,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Til"/>
+        <DatePicker HorizontalAlignment="Left" Margin="985,499,0,0" VerticalAlignment="Top" Date="{Binding View_Date_From, Mode=TwoWay}"/>
+        <DatePicker HorizontalAlignment="Left" Margin="985,561,0,0" VerticalAlignment="Top" Date="{Binding View_Date_To, Mode=TwoWay}"/>
+
+    </Grid>
+</Page>
